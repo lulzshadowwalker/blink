@@ -25,6 +25,7 @@ export class PocketbaseNoteRepository implements NoteRepository {
   async create(params: CreateNoteParams): Promise<Note> {
     const record = await pb.collection('notes').create({
       content: params.content,
+      user: pb.authStore.record?.id,
     })
 
     console.info('created note', {

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { Note } from '@/lib/models'
 import { PocketbaseNoteRepository } from '@/lib/repositories/pocketbase-note-repository'
-import { ref, onMounted, useTemplateRef } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { ref, onMounted, useTemplateRef, watch } from 'vue'
+
+const auth = useAuthStore()
 
 const messagesList = useTemplateRef('messagesList')
 
@@ -32,13 +35,32 @@ function scrollToBottom() {
   }, 10)
 }
 
-onMounted(() => {
-  fetchMessages()
-})
+watch(
+  () => auth.isAuthenticated,
+  (isAuthenticated) => {
+    if (isAuthenticated) {
+      fetchMessages()
+      return
+    }
+
+    messages.value = []
+  },
+)
 </script>
 
 <template>
-  <main class="flex flex-col mx-auto max-w-screen-sm px-6 py-8 h-screen">
+  <main v-if="!auth.isAuthenticated" class="h-screen grid place-items-center">
+    <div>
+      <p>You need to authenticate to see the messages</p>
+      <button @click="auth.login">Authenticate</button>
+    </div>
+  </main>
+
+  <main
+    class="flex flex-col mx-auto max-w-screen-sm px-6 py-8 h-screen"
+    v-if="auth.isAuthenticated"
+  >
+    <button @click="auth.logout">Logout</button>
     <!-- Messages Section -->
     <section class="flex-1 overflow-auto mb-6 scroll-smooth" ref="messagesList">
       <ul class="space-y-4" v-auto-animate="{ duration: 200 }">

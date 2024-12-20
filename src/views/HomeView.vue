@@ -12,6 +12,11 @@ const messages = ref<Note[]>([])
 const input = ref('')
 
 async function fetchMessages() {
+  if (!auth.isAuthenticated) {
+    messages.value = []
+    return
+  }
+
   const repository = new PocketbaseNoteRepository()
   messages.value = await repository.list().then((messages) => messages.reverse())
   scrollToBottom()
@@ -35,16 +40,11 @@ function scrollToBottom() {
   }, 10)
 }
 
+onMounted(() => fetchMessages())
+
 watch(
   () => auth.isAuthenticated,
-  (isAuthenticated) => {
-    if (isAuthenticated) {
-      fetchMessages()
-      return
-    }
-
-    messages.value = []
-  },
+  (isAuthenticated) => fetchMessages(),
 )
 </script>
 

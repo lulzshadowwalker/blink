@@ -50,7 +50,7 @@ watch(
 </script>
 
 <template>
-  <main v-if="!auth.isAuthenticated" class="h-screen grid place-items-center">
+  <main v-if="!auth.isAuthenticated" class="h-dvh grid place-items-center">
     <div>
       <h1 class="font-bold text-8xl tracking-tight">Blink.</h1>
       <p class="text-gray-500 text-lg">You need to be authenticated to continue</p>
@@ -60,10 +60,7 @@ watch(
     </div>
   </main>
 
-  <main
-    class="flex flex-col mx-auto max-w-screen-sm px-6 py-4 h-screen"
-    v-if="auth.isAuthenticated"
-  >
+  <main class="flex flex-col mx-auto max-w-screen-sm px-6 py-4 h-dvh" v-if="auth.isAuthenticated">
     <Button @click="auth.logout"><i class="pi pi-sign-out" /> Logout</Button>
     <!-- Messages Section -->
     <section class="flex-1 overflow-auto my-3 scroll-smooth" ref="messagesList">

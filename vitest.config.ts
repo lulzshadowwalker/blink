@@ -3,6 +3,7 @@ import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
 import viteConfig from './vite.config'
 
 export default mergeConfig(
+  // @ts-expect-error Parameter 'name' implicitly has an 'any' type.ts(7006)
   viteConfig,
   defineConfig({
     test: {

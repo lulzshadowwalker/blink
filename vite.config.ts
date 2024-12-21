@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // @ts-expect-error Parameter 'name' implicitly has an 'any' type.ts(7006)
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {

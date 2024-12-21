@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@primevue/themes": "^4.2.5",
     "pinia": "^2.2.6",
     "pocketbase": "^0.24.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.5",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },
@@ -43,7 +46,7 @@
     "prettier": "^3.3.3",
     "tailwindcss": "latest",
     "typescript": "~5.6.3",
-    "vite": "5",
+    "vite": "^5.4.11",
     "vite-plugin-vue-devtools": "^7.6.5",
     "vitest": "^2.1.5",
     "vue-tsc": "^2.1.10"

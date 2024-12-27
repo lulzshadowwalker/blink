@@ -75,7 +75,7 @@ watch(
 
   <main class="flex flex-col mx-auto max-w-screen-sm px-6 py-4 h-dvh" v-if="auth.isAuthenticated">
     <div class="flex items-end justify-between gap-2">
-      <h2 class="text-lg">Welcome, {{ auth.user!.name.split(' ').at(0) }}.</h2>
+      <h2 class="text-lg">Welcome, {{ auth.user!.name.split(' ')[0] }}.</h2>
       <Button @click="auth.logout" class="!text-sm"><i class="pi pi-sign-out" /> Logout</Button>
     </div>
 

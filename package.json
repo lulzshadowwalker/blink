@@ -19,6 +19,8 @@
     "@ashwamegh/vue-link-preview": "^3.3.0",
     "@formkit/auto-animate": "^0.8.2",
     "@primevue/themes": "^4.2.5",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "pinia": "^2.2.6",
     "pocketbase": "^0.24.0",
     "primeicons": "^7.0.0",

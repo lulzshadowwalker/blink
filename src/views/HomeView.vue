@@ -6,6 +6,10 @@ import { ref, onMounted, useTemplateRef, watch } from 'vue'
 import { Button, InputText } from 'primevue'
 import LinkPreview from "@ashwamegh/vue-link-preview";
 
+//  TODO: Move Vercel speed insights component into layout, whenever we have one
+import { SpeedInsights } from "@vercel/speed-insights/vue"
+import { inject } from "@vercel/analytics"
+
 const auth = useAuthStore()
 
 const messagesList = useTemplateRef('messagesList')
@@ -48,6 +52,7 @@ function urls(text: string): string[] {
 }
 
 onMounted(() => fetchMessages())
+onMounted(() => inject())
 
 watch(
   () => auth.isAuthenticated,
@@ -56,6 +61,8 @@ watch(
 </script>
 
 <template>
+  <SpeedInsights />
+
   <main v-if="!auth.isAuthenticated" class="h-dvh grid place-items-center">
     <div>
       <h1 class="font-bold text-8xl tracking-tight">Blink.</h1>

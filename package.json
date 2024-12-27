@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@ashwamegh/vue-link-preview": "^3.3.0",
     "@formkit/auto-animate": "^0.8.2",
     "@primevue/themes": "^4.2.5",
     "pinia": "^2.2.6",

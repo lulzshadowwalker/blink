@@ -53,6 +53,15 @@ function urls(text: string): string[] {
   return text.match(urlRegex) || []
 }
 
+function containsOnlyUrls(text: string): boolean {
+  const u = urls(text)
+  if (!u.length) return false
+
+  const cleaned = u.reduce((t, uu) => t.replace(uu, ''), text)
+
+  return cleaned.trim().length === 0
+}
+
 onMounted(() => fetchMessages())
 onMounted(() => inject())
 
@@ -83,7 +92,7 @@ watch(
     <section class="flex-1 overflow-auto my-3 scroll-smooth" ref="messagesList">
       <ul class="space-y-4" v-auto-animate="{ duration: 200 }">
         <li v-for="message in messages" :key="message.id">
-          <Card>
+          <Card v-if="! containsOnlyUrls(message.content)">
             <p class="break-all">
               {{ message.content }}
             </p>
@@ -99,7 +108,8 @@ watch(
       <form @submit.prevent="add(input)" class="flex gap-2">
         <InputText v-model="input" type="text" placeholder="Dear diary .." class="w-full" />
 
-        <Button type="submit" class="rounded-md bg-gray-900 px-4 py-2 text-white transition hover:bg-gray-700" size="small">
+        <Button type="submit" class="rounded-md bg-gray-900 px-4 py-2 text-white transition hover:bg-gray-700"
+          size="small">
           <i class="pi pi-send" />
           Send
         </Button>

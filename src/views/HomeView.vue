@@ -84,7 +84,7 @@ watch(
       <ul class="space-y-4" v-auto-animate="{ duration: 200 }">
         <li v-for="message in messages" :key="message.id">
           <Card>
-            <p>
+            <p class="break-all">
               {{ message.content }}
             </p>
           </Card>
